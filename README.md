@@ -1,2 +1,2 @@
-# BOOKSTORE 팀프로젝트
+# BOOKSTORE
 ## BOOKSTORE SPRING 팀프로젝트
