@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.KakaoPayMapper">
+
+<!-- 가져온 유저아이디와 충전된 전체포인트를 업데이트 -->
+<update id="pointupdate"> 
+	update bs_user set user_point = #{point} where user_id = #{userid}; 
+</update>
+
+<!-- 유저아이디와 충전된포인트와 충전 후 포인트를 데이터베이스에 저장. -->
+<insert id="insert">
+	insert into bs_point (user_id, point, point_charge) values(#{userid}, #{point} , #{pointCharge})
+</insert>
+
+</mapper>

@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+*{
+	margin: 0;
+	padding:0;
+}
+a{
+	text-decoration: none;
+}
+
+
+
+#side_right_ad_1{
+	width : 63px;
+	height : 160px;
+	
+	background: url(https://simage.kyobobook.co.kr/ink/images/prom/2020/banner/200121/bn_83.jpg), no-repeat;
+	border : 1px solid #D5D5D5;
+}
+#side_right_ad_1>a>img{
+	width : 100%;
+	height : 100%;	
+}
+#side_right_ad_2{
+	width : 63px;
+	height : 160px;
+	background-color: blue;
+	margin-top: 10px;
+	border : 1px solid #D5D5D5;
+}
+
+#side_right_ad_2>a>img{
+	width : 100%;
+	height : 100%;	
+}
+#side_right_ad_top{
+	width : 63px;
+	height : 40px;
+	border : 1px solid #D5D5D5;
+	margin-top : 10px;
+	text-align: center;
+	color: #BDBDBD;
+	line-height: 38px;
+}
+#side_right_ad_top>a{
+	width : 100%;
+	height : 100%;
+	display : inline-block;
+	text-decoration: none;
+}
+#side_right_ad_bottom{
+	width : 63px;
+	height : 40px;
+	border : 1px solid #D5D5D5;
+	margin-top : 10px;
+	text-align: center;
+	color: #BDBDBD;
+	line-height: 38px;
+}
+#side_right_ad_bottom>a{
+	width : 100%;
+	height : 100%;
+	display : inline-block;
+	text-decoration: none;
+}

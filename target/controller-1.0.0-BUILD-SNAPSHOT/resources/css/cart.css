@@ -1,0 +1,540 @@
+@charset "UTF-8";
+*{
+	margin: 0;
+	padding:0;
+}
+label,input,select{
+	vertical-align: middle;
+}
+#main_nav>ul>li {
+    margin: 30px 0;
+}
+#main_wrap{
+	width : 1200px;
+	margin : auto;
+	/* height : 500px; */
+	//background-color : green;
+}
+#main_subject{
+	width: 100%;
+    height: 98px;
+    background-color: #009500;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+#main_content_subject{
+	width: 100%;
+    height: 100px;
+    background-color: #e9e9e9;
+    border-radius: 5px;
+}
+#main_content_subject>p{
+	font-size: 30px;
+    color: #333;
+    font-weight: bolder;
+    line-height: 93px;
+    margin-left: 30px;
+}
+#main_subject>p{
+	color: white;
+    line-height: 96px;
+    font-size: 55px;
+    font-weight: bold;
+    margin-left: 35px;
+}
+
+#main_nav>ul>li>a {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    color: #fff;
+}
+
+a{
+	text-decoration: none;
+	clolr: #666;
+}
+
+/* 1920 1200 1024 968 */
+#wrap{
+	
+	width:100%;
+	//background-color: #CCC;
+	//position:relative;
+}
+
+
+#firstrow td {
+	text-align:center;
+	
+}
+
+
+1200px{
+	width: 1200px;
+	height: 100px;
+	margin: auto;
+	//background: url("../resources/img/top_cart.PNG"); 
+	text-align: center;
+	position : relative
+}
+#sub_top_1>img{
+	position : absolute;
+	width: 100%;
+	margin: auto;
+	left:0;
+	top:0;
+}
+#sub_top_1>p{
+	position: absolute;
+    color: white;
+    line-height: 96px;
+    font-size: 67px;
+    font-weight: bold;
+    margin-left: 35px;
+}
+
+
+
+
+
+#nav_main{
+	margin-top: 20px;
+}
+
+#nav_main_1{
+	width: 100%;
+	margin: auto;
+	position:relative;
+}
+
+
+/* 전체삭제 체크박스 및 버튼 */
+#nav_main_1_cart_check{
+	display: inline-block;
+}
+#del_btn{
+	margin-left : 10px;
+	display: inline-block;
+	width: 100px;
+}
+
+
+/* 메인내용 */
+#nav_main_1_cart_info table{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#nav_main_1_cart_info>table>thead>tr{
+	height : 80px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid #e7e7e7;
+	background: #fbfbfb;
+	font-family: 'Malgun Gothic',sans-serif;
+	font-size: 17px;
+	font-weight: bold;
+}
+#nav_main_1_cart_info>table>thead>tr>td{
+	padding-left : 10px;
+}
+
+#c_product_info{
+	width: 40%;
+}
+#c_price{
+	width : 15%;
+}
+#c_amount{
+	width : 15%;
+}
+#c_sum{
+	width : 15%;
+}
+#c_selection{
+	width : 15%;
+}
+
+
+#nav_main_1_cart_info>table>tbody>tr{
+	height : 180px;
+	border-bottom: 1px solid #e7e7e7;
+}
+
+#r_cproduct_check{
+	width: 6%;
+}
+.r_cproduct_image{
+	width: 12%;
+}
+.r_cproduct_image>img{
+	width: 80%;
+    margin: 15px 0;
+}
+/* 책제목 부분 */
+#r_cproduct_info{
+	width: 22%;
+}
+
+.title{
+	font-size: 17px;
+    line-height: 1.6;
+    font-family: 'malgun Gothic', Sans-serif;
+}
+.title strong{
+	color: #3a60df;
+    font-size: 19px;
+}
+.author{
+	margin-top: 10px;
+    font-size: 14px;
+}
+.likeStar{
+	margin-top: 10px;
+    font-size: 14px;	
+}
+/* 가격부분 */
+#r_cprice{
+	text-align: center;
+}
+#r_cprice>strong{
+		color : red;
+		font-size: 22px;
+
+}
+/* 수량변경 */
+#r_camount{
+	text-align: center;
+}
+.qty_change{
+	display : inline-block;
+	vertical-align:middle;
+	height:29px;
+	position : relative;
+	font-size: 14px;
+	padding-right: 15px;
+	padding-left: 10px;
+}
+.qty_change>input{
+	text-align : center;
+	font-size:11px;
+	//border-color : #c6c6c6;
+	height : 27px;
+	width: 60px;
+	border : 1px solid #c6c6c6;
+	margin-left: 10px;
+	font-weight: bold;
+}
+.qty_change .btn_plus{
+	position : absolute;
+	top : 0;
+	right:0;
+	border : 1px solid #c6c6c6;
+	width:13px;
+	height:13px;
+	font-size:0;
+	color:transparent;
+	background: url(https://simage.kyobobook.co.kr/ink/images/common/icon_quantity_up.gif) no-repeat;
+	padding-left: 1px;
+	cursor: pointer;	
+}
+.qty_change .btn_minus{
+	position : absolute;
+	bottom : 0;
+	right:0;
+	border : 1px solid #c6c6c6;
+	width:13px;
+	height:13px;
+	font-size:0;
+	color:transparent;
+	background: url(https://simage.kyobobook.co.kr/ink/images/common/icon_quantity_down.gif) no-repeat;
+	padding-left: 1px;
+	cursor: pointer;
+}
+.change_btn_wrap{
+	text-align: center;
+	margin-top : 9px;
+	
+}
+.change_btn{
+	display : inline-block;
+	width : 79px;
+	height : 30px;
+	margin-left : 66px;
+}
+
+
+/* 합계 */
+#r_csum{
+	font-weight: bolder;
+}
+.price_sum {
+	text-align:center;	
+	
+}
+
+input[type='checkbox']{
+	width: 22px;
+    height: 22px;
+    vertical-align: middle;
+}
+
+/* 각 리스트 삭제 및 바로구매 버튼 */
+#delete_btn{
+	width : 80px;
+	height:30px;
+	display : inline-block;
+	background-color: #5e6b9f;
+	font-size: 15px;
+	color : white;
+	font-weight : normal;
+	border : 0;
+	//outline : 0;
+	
+}
+
+
+/* 결제부분 */
+#nav_main_1_result{
+	margin-top: 30px;
+}
+#nav_main_1_result_info h1,h3{
+	display : inline-block;
+}
+#nav_main_1_result_info table{
+	width: 100%;
+	border-collapse: collapse;
+}
+#nav_main_1_result_info>table>thead>tr{
+	height : 80px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid #e7e7e7;
+	//background: #fbfbfb;
+	background: #dde5ff;
+	font-family: 'Malgun Gothic',sans-serif;
+	font-size: 17px;
+	font-weight: bold;
+}
+#nav_main_1_result_info>table>thead>tr>td{
+	padding-left : 10px;
+}
+
+#nav_main_1_result_info>table>tbody>tr{
+	height : 180px;
+	border-bottom: 1px solid #e7e7e7;
+}
+#nav_main_1_result_info>table>tbody>tr>td{
+	text-align: center;
+	padding-right: 30px;
+}
+/* 
+#result_info_ship_wrap{
+	position:relative;
+}
+ */
+#result_info_price{
+	width: 40%;
+}
+#result_info_ship{
+	width : 20%;
+	position : relative;
+}
+#result_info_plus{
+	position: absolute;
+	height:28px;
+	width: 28px;
+	left : 0;
+	background-color: #5e6b9f;
+	color: white;
+	border-radius: 20px;
+	top:85px;
+	font-size: 22px;
+	font-weight: bolder;
+	line-height: 24px;
+	text-align: center;
+}
+#result_info_equal{
+	position: absolute;
+	height:28px;
+	width: 28px;
+	right : 0;
+	background-color: #5e6b9f;
+	color: white;
+	border-radius: 20px;
+	top:85px;
+	font-size: 22px;
+	font-weight: bolder;
+	line-height: 24px;
+	text-align: center;
+}
+#result_info_total{
+	width : 20%;
+}
+#result_info_point{
+	width : 20%;
+}
+
+
+
+
+
+
+
+
+
+/* 결제하기버튼 */
+#nav_main_1_result_btn{
+	height : 100px;
+	text-align: right ;
+	
+}
+
+#nav_main_1_result_btn>a{
+	display : inline-block;
+	width: 280px;
+	height: 50px;
+	padding-top:5px;
+	margin-right:140px;
+	margin-top:15px;
+	background-color:#365fdd;
+	text-align: center;
+	/* border-radius:10px; */
+	vertical-align: center;
+	line-height: 50px;
+	color: white;
+	font-family: "dotum";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#main{
+	width: 100%;
+	//background-color:grey;
+}
+
+
+#main2{
+	width: 100%;
+		
+	//background-color:blue;	
+	
+}
+
+
+
+
+#footer_nav{
+	width:100%;
+	height:50px;
+	background-color:#8C8C8C;
+	
+}
+#footer_nav_container{
+	width: 1200px;
+	height: 100%;
+	margin: auto;
+	background-color:#8C8C8C;
+	//vertical-align: center;
+}
+#footer_nav_container>ul{
+	//font-size : large;
+	font-weight : bold;
+	//color : #FFFFFF;
+	float:left;
+	list-style:none;
+	position:relative;
+	padding-top:10px;
+	line-height: 27px;
+	font-family: dotum;
+	margin-left: 10px;
+}
+#footer_nav_container>ul>li{
+	display:inline;
+	width: 45px;
+	height: 19px;
+	padding: 10px 9px 0 10px;
+}
+#footer_nav_container>ul>span{
+	margin: 0 4px;
+}
+
+
+
+
+
+
+
+
+#footer{
+	width:100%;
+	height:130px;
+	background-color:#EAEAEA;
+	padding-bottom : 50px;
+	
+}
+#footer_container{
+	width: 1200px;
+	height: 100%;
+	margin: auto;
+}
+#footer_left>img{
+	height :70px;
+	margin-left: 20px;
+	margin-top : 20px;
+}
+#footer_left{
+	float :left;
+	width: 170px;
+	margin-left: 20px;
+	margin-top : 30px;
+	
+}
+#footer_right{
+	float :left;
+	width: 680px;
+	margin-left: 70px;
+	margin-top : 30px;
+}
+
+
+
+
+
+
+#side_left_ad{
+	width:85px;
+	//height:703px;
+	position: absolute;
+	top : 0;
+	left : -85px;
+	margin-right:715px;
+	right:960px;
+	background-color: black;
+	z-index: 99999;
+}
+
+#side_right_ad{
+	width:65px;
+	height:362px;
+	position: absolute;
+	top : 0;
+	right : -65px;
+	//background-color: black;
+}
+.clearfix{
+	clear:both;
+}

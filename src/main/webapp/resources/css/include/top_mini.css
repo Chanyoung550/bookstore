@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+ul,li {
+	list-style:none;
+}
+
+#top_mini_1_ul{
+	float:right;
+	list-style:none;
+	position:relative;
+	padding-top:10px;
+}
+
+
+#top_mini_1_ul li{
+	display:inline;
+	width: 100px;
+	height: 19px;
+	padding: 10px 9px 0 10px;
+	cursor: pointer;
+}
+
+#content {
+
+}
+
+#content #side_menu{
+	width: 18%;
+}
+#content #main_contents{
+	width: 82%;
+}
+
+
+#content > div{
+	float:left;
+}
+
+#content:after {
+	content:'';
+	display:block;
+	clear:both;
+	hight:0;
+}

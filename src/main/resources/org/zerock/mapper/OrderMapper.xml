@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http::/mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.OrderMapper">
+
+
+<select id="read" resultType="org.zerock.domain.Bs_OrderVO">
+   select * from bs_order where user_id = #{user_id} AND od_date BETWEEN DATE_ADD(NOW(),INTERVAL -1 MONTH ) AND NOW()
+</select>
+
+
+
+<select id="searchlist" resultType="org.zerock.domain.Bs_OrderVO">
+   select *
+   from bs_order
+   INNER JOIN bs_book ON bs_book.bk_num = bs_order.bk_num 
+    <trim prefix="where" prefixOverrides="AND|OR">
+       <if test="user_id != null and user_id != '' ">
+            and bs_order.user_id = #{user_id}
+      </if>
+      <if test="searchType=='title' and keyword != null and keyword != '' ">
+         and bs_book.bk_name like CONCAT('%', #{keyword}, '%')
+      </if>
+      <if test="searchType=='content' and keyword != null and keyword != '' ">
+         and bs_book.bk_writer like CONCAT('%', #{keyword}, '%')
+      </if>
+      <if test="startDate != null and startDate != '' and endDate != null and endDate != '' ">
+         and DATE(bs_order.od_date) BETWEEN #{startDate} AND #{endDate}
+      </if>
+   </trim>
+   order by bs_order.od_date desc
+   limit #{startList}, #{listSize}   
+</select>
+
+
+<select id="searchlistcnt" resultType="int">
+   select count(*) as listCnt
+   from bs_order
+   INNER JOIN bs_book ON bs_book.bk_num = bs_order.bk_num 
+    <trim prefix="where" prefixOverrides="AND|OR">
+       <if test="user_id != null and user_id != '' ">
+         and bs_order.user_id = #{user_id}
+      </if>
+      <if test="searchType=='title' and keyword != null and keyword != '' ">
+         and bs_book.bk_name like CONCAT('%', #{keyword}, '%')
+      </if>
+      <if test="searchType=='content' and keyword != null and keyword != '' ">
+         and bs_book.bk_writer like CONCAT('%', #{keyword}, '%')
+      </if>
+      <if test="startDate != null and startDate != '' and endDate != null and endDate != '' ">
+         and DATE(bs_order.od_date) BETWEEN #{startDate} AND #{endDate}
+      </if>
+   </trim>
+</select>
+
+
+
+
+</mapper>

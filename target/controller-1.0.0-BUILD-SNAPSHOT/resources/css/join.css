@@ -1,0 +1,12 @@
+@charset "UTF-8";
+#main {
+}
+
+.logo {
+	text-align: center;
+}
+
+.main_title {
+	width: 300px;
+	margin: auto;
+}

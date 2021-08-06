@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+#main {
+}
+
+.main_title {
+	width: 500px;
+	margin: auto;
+}
+
+.join_btn {
+	width: 300px;
+	text-align: center;
+	margin-top: 20px;
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http::/mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.PointMapper">
+
+<select id="read" resultType="org.zerock.domain.Bs_PointVO">
+	select * from bs_point where user_id = #{user_id}
+</select>
+
+
+<select id="dateRead" resultType="org.zerock.domain.Bs_PointVO">
+	SELECT point_date, point_num, user_id, sum(point_charge) as point_charge , point_payment , point 
+	from bs_point 
+	where user_id = #{user_id}
+	<if test="startDate != null and startDate != '' and endDate != null and endDate != '' ">
+			and DATE(bs_point.point_date) BETWEEN #{startDate} AND #{endDate}
+	</if>
+	GROUP BY FLOOR(MINUTE(point_date)), point
+	order by bs_point.point_num desc
+	limit #{startList}, #{listSize}	
+</select>
+
+
+
+<select id="dateReadCnt" resultType="int">
+	select count(*) as listCnt 
+	from (
+		select count(*) as listCnt 
+		from bs_point 
+		where user_id = #{user_id}
+		<if test="startDate != null and startDate != '' and endDate != null and endDate != '' ">
+				and DATE(bs_point.point_date) BETWEEN #{startDate} AND #{endDate}
+		</if>
+		GROUP BY FLOOR(MINUTE(point_date)), point
+	) A
+	
+	
+</select>
+
+
+
+
+
+
+<insert id="insert">
+	insert into bs_point (user_id, point, point_charge) values(#{user_id}, #{point} , #{point_charge})
+</insert>
+
+
+
+</mapper>

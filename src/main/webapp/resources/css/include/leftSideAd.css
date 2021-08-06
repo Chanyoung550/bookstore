@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+#side_left_ad_1{
+	width : 85px;
+	height : 190px;
+	background-color: yellow;
+	
+}
+#side_left_ad_1>a>img{
+	width : 100%;
+	height : 100%;
+}
+#side_left_ad_2{
+	width : 85px;
+	height : 190px;
+	background-color: red;
+	border-top: 1px solid #BDBDBD;	
+}
+#side_left_ad_2>a>img{
+	width : 100%;
+	height : 100%;
+}
+#side_left_ad_3{
+	width : 85px;
+	height : 190px;
+	background-color: blue;	
+	border-top: 1px solid #BDBDBD;
+}
+#side_left_ad_3>a>img{
+	width : 100%;
+	height : 100%;
+}

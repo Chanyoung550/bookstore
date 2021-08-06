@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.BookStoreMapper">
+
+<!-- 도서등록  -->
+<insert id="register">
+	insert into bs_book (bk_name, bk_price, bk_pblsher, bk_intro, bk_writer,
+    bk_category, bk_stock, bk_pdate, bk_pictureUrl, bk_thumbUrl )
+   values 
+   (#{bk_name}, #{bk_price}, #{bk_pblsher}, #{bk_intro},
+    #{bk_writer}, #{bk_category}, #{bk_stock}, #{bk_pdate},
+    #{bk_pictureUrl}, #{bk_thumbUrl} )
+</insert>
+
+<!-- 도서 출력  -->
+<select id="productList" resultType="org.zerock.domain.Bs_BookVO">
+	SELECT
+		 bk_name, bk_writer, bk_pdate, bk_stock, bk_num
+	FROM
+		 bs_book
+		 
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+
+			<if test="searchType=='title' and keyword != null and keyword != '' ">
+
+				AND bk_name like CONCAT('%', #{keyword}, '%')
+
+			</if>
+
+			<if test="searchType=='writer' and keyword != null and keyword != '' ">
+
+				AND bk_writer like CONCAT('%', #{keyword}, '%')
+
+			</if>
+
+		</trim>
+		
+	ORDER BY bk_stock
+
+	LIMIT #{startList}, #{listSize}	
+	
+	
+		 
+</select>
+
+<!-- paging 도서 개수 출력  -->
+<select id="productListCnt" resultType="int">
+	SELECT
+	     count(*) as listCnt
+	FROM
+		 bs_book
+		 
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+
+		<if test="searchType=='title' and keyword != null and keyword != '' ">
+
+			AND bk_name like CONCAT('%', #{keyword}, '%')
+
+		</if>
+
+		<if test="searchType=='writer' and keyword != null and keyword != '' ">
+
+			AND bk_writer like CONCAT('%', #{keyword}, '%')
+
+		</if>
+
+	</trim>
+</select>
+
+<!-- 재고 업데이트  -->
+<update id="stockAdd">
+	
+	UPDATE bs_book
+	
+	SET bk_stock = bk_stock + #{stockAdd}
+	
+	WHERE bk_num = #{bkNum}
+		
+</update>
+
+<!-- 도서 삭제  -->
+<delete id="delBook">
+
+	DELETE FROM bs_book
+	
+	WHERE bk_num = #{bkNum}
+	
+</delete>
+
+<!-- 주문 목록 출력 -->
+<select id="orderList" resultType="org.zerock.domain.Bs_OrderVO">
+
+	SELECT od_num, od_date, bk_price, bk_name, bk_ordercnt, user_name, bs_order.user_addr, od_dv, bk_salePrice
+	
+	FROM bs_book
+	
+	RIGHT JOIN bs_order ON bs_order.bk_num = bs_book.bk_num
+	
+	LEFT JOIN bs_user ON bs_order.user_id = bs_user.user_id	
+	
+	
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+
+		<if test="searchType=='orderNum' and keyword != null and keyword != '' ">
+
+			AND od_num like CONCAT('%', #{keyword}, '%')
+
+		</if>
+
+		<if test="searchType=='user_name' and keyword != null and keyword != '' ">
+
+			AND user_name like CONCAT('%', #{keyword}, '%')
+
+		</if>
+
+	</trim>
+		
+	ORDER BY od_num desc
+
+	LIMIT #{startList}, #{listSize}
+	
+</select>
+
+<!-- paging 주문목록 개수 출력 -->
+<select id="orderListCnt" resultType="int">
+	SELECT
+	     count(*) as listCnt
+	     
+	FROM bs_book
+	
+	RIGHT JOIN bs_order ON bs_order.bk_num = bs_book.bk_num
+	
+	LEFT JOIN bs_user ON bs_order.user_id = bs_user.user_id
+		 
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+
+		<if test="searchType=='orderNum' and keyword != null and keyword != '' ">
+
+			AND od_num like CONCAT('%', #{keyword}, '%')
+
+		</if>
+
+		<if test="searchType=='user_name' and keyword != null and keyword != '' ">
+
+			AND user_name like CONCAT('%', #{keyword}, '%')
+
+		</if>
+
+	</trim>
+</select>
+
+<!-- 배송 상태 업데이트 -->
+<update id="delivery">
+	
+	UPDATE bs_order
+	
+	SET od_dv = #{cNum}
+	
+	WHERE od_num = #{oNum}
+	
+</update>
+
+<!-- 회원 리스트 출력 - paging -->
+<select id="memberList" resultType="org.zerock.domain.Bs_UserVO">
+	SELECT
+		 *
+	FROM
+		 bs_user
+		 
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+
+			<if test="searchType=='userID' and keyword != null and keyword != '' ">
+
+				AND user_id like CONCAT('%', #{keyword}, '%')
+
+			</if>
+
+			<if test="searchType=='user_name' and keyword != null and keyword != '' ">
+
+				AND user_name like CONCAT('%', #{keyword}, '%')
+
+			</if>
+
+		</trim>
+		
+	ORDER BY user_regidate desc
+
+	LIMIT #{startList}, #{listSize}		
+		 
+</select>
+
+<!-- paging 회원리스트 개수 출력 -->
+<select id="memberListCnt" resultType="int">
+	SELECT
+	     count(*) as listCnt
+	FROM
+		 bs_user
+		 
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+
+		<if test="searchType=='userID' and keyword != null and keyword != '' ">
+
+			AND user_id like CONCAT('%', #{keyword}, '%')
+
+		</if>
+
+		<if test="searchType=='user_name' and keyword != null and keyword != '' ">
+
+			AND user_name like CONCAT('%', #{keyword}, '%')
+
+		</if>
+
+	</trim>
+</select>
+
+<!-- 유저 주소 추가 -->
+<insert id="addAddress">
+
+	INSERT INTO bs_addr(user_id, rec_name, rec_phone, rec_addr)
+	
+	VALUES(#{userID}, #{name}, #{phone}, #{addr})
+	
+</insert>
+
+<!-- 유저 주소 출력 -->
+<select id="addrList" resultType="org.zerock.domain.Bs_AddrVO">
+
+	SELECT *
+	
+	FROM bs_addr
+	
+	WHERE user_id = #{userID}
+	
+	ORDER BY ifnull(regi_date, 0) desc
+
+	LIMIT 3
+	
+</select>
+
+<!-- 결제 페이지 도서정보 출력 -->
+<select id="payList" resultType="org.zerock.domain.Bs_OrderList">
+
+	SELECT bk_num, bk_name, bk_price, bk_pictureUrl, bk_thumbUrl
+	
+	FROM bs_book
+	
+	WHERE bk_num = #{bk_num}
+
+</select>
+
+
+<!-- 결제 내역 저장 -->
+<insert id="payContent">
+	
+	INSERT INTO bs_order(bk_num, bk_ordercnt, user_id, user_addr, bk_salePrice)
+	
+	VALUES(#{bkNum}, #{bkOdcnt}, #{userId}, #{reci_addr}, #{saleBkPrice})
+	
+</insert>
+
+<!-- 도서 판매 수량 업데이트 -->
+<update id="addBookSel">
+
+	UPDATE bs_book
+	
+	SET bk_sellcnt = bk_sellcnt + #{bkOdcnt}
+	
+	WHERE bk_num = #{bkNum} 	
+
+</update>
+
+<!-- 판매도서 재고 업데이트 -->
+<update id="minuStock">
+
+	UPDATE bs_book
+	
+	SET bk_stock = bk_stock - #{bkOdcnt}
+	
+	WHERE bk_num = #{bkNum} 	
+
+</update>
+
+<!-- 판매된 도서 장바구니 삭제 -->
+<delete id="delCart">
+	
+	DELETE FROM bs_cart
+	
+	WHERE cart_num = #{cartNum}
+	
+</delete>
+
+<!-- 포인트 사용 업데이트 -->
+<update id="minuPoint">
+
+	UPDATE bs_user
+	
+	SET user_point = #{userPoint}
+	
+	WHERE user_id = #{userId} 	
+
+</update>
+
+<!-- 결제 내역 입력 -->
+<insert id="infoPayment">
+
+	INSERT INTO bs_point(user_id, point, point_payment)
+	
+	VALUES(#{userId}, #{userPoint} ,#{totalPrice})
+	
+</insert>
+
+<!-- 유저 포인트에서 배송비 차감 -->
+<update id="shipPrice">
+
+	UPDATE bs_user
+	
+	SET user_point = user_point - #{shipPrice}
+	
+	WHERE user_id = #{userID} 	
+
+</update>
+
+<!-- 유저 포인트 사용 합계 -->
+<select id="user_amount" resultType="integer">
+
+	SELECT sum(point_payment)
+	
+	FROM bs_point
+	
+	WHERE user_id = #{userID}
+	
+	group by user_id
+
+</select>
+
+<!-- 유저 등급 업데이트(VIP) -->
+<update id="upgrade_VIP">
+
+	UPDATE bs_user
+	
+	SET user_rank = 1
+	
+	WHERE user_id = #{userID} 	
+
+</update>
+
+<!-- 유저 등급 업데이트(VVIP) -->
+<update id="upgrade_VVIP">
+
+	UPDATE bs_user
+	
+	SET user_rank = 2
+	
+	WHERE user_id = #{userID} 	
+
+</update>
+
+<insert id="payInfoShipPC">
+
+	INSERT INTO bs_point(user_id, point, point_payment)
+	
+	VALUES(#{userID}, #{user_point}, #{shipPrice})
+	
+</insert>
+
+
+
+</mapper>
